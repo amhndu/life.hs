@@ -4,7 +4,7 @@ import Control.Concurrent
 type Grid = [[Int]]
 
 printMatrix g = let printCell 1 = putStr "■ "
-                    printCell 0 = putStr "  "
+                    printCell 0 = putStr ". "
                 in mapM (\xs -> do
                               mapM_ printCell xs
                               putStr "\n") g
