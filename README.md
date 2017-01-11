@@ -18,4 +18,5 @@ $ runhaskell life.hs < seeds/GliderSeed.txt
 ```
 
 Seeds are space separeted matrices of 0 and 1 representing dead/alive cell.
+Note that it uses ANSI escape sequences so this may not work on Windows.
 
