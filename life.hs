@@ -15,8 +15,8 @@ neighbours g r c = foldr1 (zipWith (zipWith (+))) [up, down, left, right, shiftL
                    where
                         shiftUp (_:g) n = g ++ [replicate n 0]
                         shiftDown g n = replicate n 0 : init g
-                        shiftLeft g n = transpose . shiftUp (transpose g) $ n
-                        shiftRight g n = transpose . shiftDown (transpose g) $ n
+                        shiftLeft g n = foldr (\(_:xs) acc ->  (xs ++ [0]) : acc) [] g
+                        shiftRight g n = foldr (\xs acc -> (0 : init xs) : acc) [] g
                         up     = shiftUp g c
                         down   = shiftDown g c
                         left   = shiftLeft g r
@@ -42,7 +42,6 @@ main = do
         seed <- fmap (\c -> map stringToList (lines c)) getContents
         putStr "\ESC[2J"        --Clear screen
         simulate seed (length seed) (length $ head seed)
-        putStr "\ESC[K"         --Clear to next line
         where stringToList str = map (\x -> read x :: Int) (words str)
 
 
