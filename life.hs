@@ -1,5 +1,6 @@
 import Data.List
 import Control.Concurrent
+import Control.DeepSeq
 
 type Grid = [[Int]]
 
@@ -40,7 +41,7 @@ simulate seed r c = do
 
 main = do
         seed <- fmap (\c -> map stringToList (lines c)) getContents
-        putStr "\ESC[2J"        --Clear screen
+        seed `deepseq` putStr "\ESC[2J"        --Force strict evaluation of seed, i.e. wait for EOF then clear screen
         simulate seed (length seed) (length $ head seed)
         where stringToList str = map (\x -> read x :: Int) (words str)
 
