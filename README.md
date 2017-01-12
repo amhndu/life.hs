@@ -3,6 +3,8 @@ life.hs
 
 A dead-simple simulator for Conway's Game of Life in Haskell.
 
+See it in action: https://asciinema.org/a/7gx6sbb86v1ccztq27uzxm06r
+
 Compiling:
 ```
 $ ghc --make life.hs
